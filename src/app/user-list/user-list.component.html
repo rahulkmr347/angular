@@ -1,0 +1,41 @@
+
+<table class="table" border="2">
+    <thead >
+      <tr >
+        <th scope="col">userId</th>
+        <th scope="col">emailId</th>
+        <th scope="col">password</th>
+        <th scope="col">confirmPassword</th>
+        <th scope="col">aadharCard</th>
+        <th scope="col">city</th>
+        <th scope="col">state</th>
+        <th scope="col">pincode</th>
+        <th scope="col">mobileNo</th>
+        <th scope="col">userType</th>
+        <th scope="col">panCard</th>
+        <th scope="col">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let user of users">
+        <th scope="row">{{user.userId}}</th>
+        <td>{{user.emailId}}</td>
+        <td>{{user.password}}</td>
+        <td>{{user.confirmPassword}}</td>
+        <td>{{user.aadharCard}}</td>
+        <td>{{user.city}}</td>
+        <td>{{user.state}}</td>
+        <td>{{user.pincode}}</td>
+        <td>{{user.mobileNo}}</td>
+        <td>{{user.userType}}</td>
+        <td>{{user.panCard}}</td>
+        <td>
+            <button (click)="updateUser(user.userId)" class="btn btn-primary">Update</button>
+
+        </td>
+        
+      </tr>
+     
+    </tbody>
+  </table>
+  

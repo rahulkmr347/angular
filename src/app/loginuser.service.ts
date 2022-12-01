@@ -12,8 +12,8 @@ export class LoginuserService {
   private baseUrl="http://localhost:8081/rahul/login/user/login"
   constructor(private httpClient: HttpClient) { }
 
-  loginUser(user: User):Observable<object>{
+  loginUser(user: User):Observable<User>{
     console.log(user)
-    return this.httpClient.put(`${this.baseUrl}`, user);
+    return this.httpClient.put<User>(`${this.baseUrl}`, user);
   }
 }
