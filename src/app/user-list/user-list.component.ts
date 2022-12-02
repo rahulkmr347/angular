@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RegisterService } from '../register.service';
 import { User } from '../user';
 
@@ -11,10 +11,13 @@ import { User } from '../user';
 export class UserListComponent implements OnInit {
 
   users : User[] = [] 
+  userId!: number
   constructor(private registerservice: RegisterService,
-              private router: Router){}
+              private router: Router , private activeRouter: ActivatedRoute){}
 
   ngOnInit(): void {
+    //this.userId =this.activeRouter.snapshot.params['userId'];
+    console.log(this.userId);
     this.registerservice.getAllUser().subscribe(data=>{
       this.users = data;
     })
@@ -23,6 +26,16 @@ export class UserListComponent implements OnInit {
   updateUser(userId:number){
     console.log(userId);
     this.router.navigate(['update-user', userId]);
+  }
+
+  deleteUser(userId:number){
+    console.log(userId)
+    this.registerservice.deleteUser(userId).subscribe((data:any)=>{
+      alert("Deleted Successfully")
+      window.location.reload(); 
+    },error=>alert("Invalid field")
+    );
+    
   }
 
 }

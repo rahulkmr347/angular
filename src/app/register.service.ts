@@ -12,6 +12,7 @@ export class RegisterService {
   private baseUrl1 = "http://localhost:8081/rahul/registration/all/user"
   private baseUrl2 = "http://localhost:8081/rahul/registration/find"
   private baseUrl3 = "http://localhost:8081/rahul/registration/user"
+  private baseUrl4 = "http://localhost:8081/rahul/registration/user/delete"
   constructor(private httpClient: HttpClient) { }
 
   registerUser(user: User):Observable<object>{
@@ -30,5 +31,9 @@ export class RegisterService {
 
   updateUser(user: User):Observable<Object>{
     return this.httpClient.put(`${this.baseUrl3}/${user.userId}`, user)
+  }
+
+  deleteUser(userId:number):Observable<Object>{
+    return this.httpClient.delete(`${this.baseUrl4}/${userId}`)
   }
 }
