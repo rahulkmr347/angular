@@ -24,7 +24,8 @@ export class UserLoginComponent implements OnInit{
     console.log(this.user)
     this.loginuserservice.loginUser(this.user).subscribe((data : any)=>{
       console.log(data);
-      alert("Login Successfully")
+      alert("Login Successfully");
+      this.router.navigate(['/userlist']);
     },error=>alert("Sorry please enter correct userId or password")
     );
   }

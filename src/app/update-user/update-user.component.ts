@@ -29,7 +29,7 @@ export class UpdateUserComponent implements OnInit{
   updateUserData(){
     console.log(this.user);
     this.registerService.updateUser(this.user).subscribe(data=>{
-      alert("Register Successfully")
+      alert("User updated Successfully")
       this.router.navigate(['/userlist']);
     },error=>alert("Invalid field")
     );
