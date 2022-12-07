@@ -38,4 +38,8 @@ export class UserListComponent implements OnInit {
     
   }
 
+  getDeletedUser(){
+    this.router.navigate(['deleted-user']);
+  }
+
 }

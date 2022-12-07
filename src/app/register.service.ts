@@ -7,12 +7,15 @@ import { User } from './user';
   providedIn: 'root'
 })
 export class RegisterService {
+  
 
   private baseUrl = "http://localhost:8081/rahul/registration/user/register"
   private baseUrl1 = "http://localhost:8081/rahul/registration/all/user"
   private baseUrl2 = "http://localhost:8081/rahul/registration/find"
   private baseUrl3 = "http://localhost:8081/rahul/registration/user"
   private baseUrl4 = "http://localhost:8081/rahul/registration/user/delete"
+  private baseUrl5 =  "http://localhost:8081/rahul/registration/all/user/getDeleted"
+  private baseUrl6 = "http://localhost:8081/rahul/registration/user/activate"
   constructor(private httpClient: HttpClient) { }
 
   registerUser(user: User):Observable<object>{
@@ -35,5 +38,13 @@ export class RegisterService {
 
   deleteUser(userId:number):Observable<Object>{
     return this.httpClient.delete(`${this.baseUrl4}/${userId}`)
+  }
+
+  getDeletedUser():Observable<User[]> {
+    return this.httpClient.get<User[]>(`${this.baseUrl5}`);
+  }
+
+  activateUser(userId:number){
+    return this.httpClient.get(`${this.baseUrl6}/${userId}`)
   }
 }

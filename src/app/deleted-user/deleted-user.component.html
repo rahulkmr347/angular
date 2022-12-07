@@ -1,4 +1,3 @@
-
 <table class="table" border="2">
     <thead >
       <tr >
@@ -15,12 +14,11 @@
         <th scope="col">panCard</th>
         <th scope="col">activeStatus</th>
         <th scope="col">Action</th>
-        <th scope="col">Delete</th>
       </tr>
     </thead>
     <tbody>
       <tr *ngFor="let user of users">
-        <th scope="row">{{user.userId}}</th>
+        <td scope="row">{{user.userId}}</td>
         <td>{{user.emailId}}</td>
         <td>{{user.password}}</td>
         <td>{{user.confirmPassword}}</td>
@@ -33,18 +31,10 @@
         <td>{{user.panCard}}</td>
         <td>{{user.activeStatus}}</td>
         <td>
-            <button (click)="updateUser(user.userId)" class="btn btn-primary">Update</button>
+            <button (click)="activateUser(user.userId)" class="btn btn-primary">Activate</button>
 
         </td>
-        <td>
-          <button (click)="deleteUser(user.userId)" class="btn btn-primary">Delete</button>
-
-      </td>
-        
       </tr>
      
     </tbody>
   </table>
-
-  <div><button (click)="getDeletedUser()">List of deleted User</button></div>
-  
