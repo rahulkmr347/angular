@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ReturnStatement } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
@@ -14,22 +14,32 @@ export class LoginuserService {
   private baseUrl1="http://localhost:8081/rahul/details/all-user-details"
   private baseUrl2="http://localhost:8081/rahul/details/user-delete/delete"
   private baseUrl3="http://localhost:8081/rahul/details/add-detail"
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) { 
+  
+   
+  }
+    username="rahul@gmail.com"
+    password= "rahul@123"
+    headers=new HttpHeaders({Authorization:'Basic '+ btoa(this.username+":"+this.password)})
 
   loginUser(user: User):Observable<User>{
-    console.log(user)
-    return this.httpClient.put<User>(`${this.baseUrl}`, user);
+    
+    const headers=this.headers
+    return this.httpClient.put<User>(`${this.baseUrl}`,user,{headers});
   }
 
   getAllUserJobDetails(userId:number):Observable<UserJobDetails[]>{
-    return this.httpClient.get<UserJobDetails[]>(`${this.baseUrl1}/${userId}`);
+    const headers=this.headers
+    return this.httpClient.get<UserJobDetails[]>(`${this.baseUrl1}/${userId}`,{headers});
   }
 
   deleteRecord(userDetailsId:number):Observable<Object>{
-    return this.httpClient.delete(`${this.baseUrl2}/${userDetailsId}`)
+    const headers=this.headers
+    return this.httpClient.delete(`${this.baseUrl2}/${userDetailsId}`,{headers})
   }
 
   addUserJobDetails(user: UserJobDetails, userId:number):Observable<Object>{
-    return this.httpClient.post(`${this.baseUrl3}/${userId}`, user)
+    const headers=this.headers
+    return this.httpClient.post(`${this.baseUrl3}/${userId}`, user,{headers})
   }
 }

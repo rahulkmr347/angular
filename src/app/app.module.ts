@@ -12,6 +12,7 @@ import { UpdateUserComponent } from './update-user/update-user.component';
 import { DeletedUserComponent } from './deleted-user/deleted-user.component';
 import { UserJobDetailsComponent } from './user-job-details/user-job-details.component';
 import { AddUserJobDetailsComponent } from './add-user-job-details/add-user-job-details.component'
+import {ReactiveFormsModule} from '@angular/forms'
 @NgModule({
   declarations: [
     AppComponent,
@@ -27,7 +28,8 @@ import { AddUserJobDetailsComponent } from './add-user-job-details/add-user-job-
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

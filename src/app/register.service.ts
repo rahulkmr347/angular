@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { User } from './user';
@@ -18,33 +18,44 @@ export class RegisterService {
   private baseUrl6 = "http://localhost:8081/rahul/registration/user/activate"
   constructor(private httpClient: HttpClient) { }
 
+  username="rahul@gmail.com"
+  password= "rahul@123"
+  headers=new HttpHeaders({Authorization:'Basic '+ btoa(this.username+":"+this.password)})
+
   registerUser(user: User):Observable<object>{
     console.log(user)
-    return this.httpClient.post(`${this.baseUrl}`, user);
+    const headers=this.headers
+    return this.httpClient.post(`${this.baseUrl}`, user,{headers});
   }
 
   getAllUser():Observable<User[]>{
-    return this.httpClient.get<User[]>(`${this.baseUrl1}`);
+    const headers=this.headers
+    return this.httpClient.get<User[]>(`${this.baseUrl1}`,{headers});
   }
 
   getUserById(userId : number):Observable<User>{
-    return this.httpClient.get<User>(`${this.baseUrl2}/${userId}`)
+    const headers=this.headers
+    return this.httpClient.get<User>(`${this.baseUrl2}/${userId}`,{headers})
 
   }
 
   updateUser(user: User):Observable<Object>{
-    return this.httpClient.put(`${this.baseUrl3}/${user.userId}`, user)
+    const headers=this.headers
+    return this.httpClient.put(`${this.baseUrl3}/${user.userId}`, user,{headers})
   }
 
   deleteUser(userId:number):Observable<Object>{
-    return this.httpClient.delete(`${this.baseUrl4}/${userId}`)
+    const headers=this.headers
+    return this.httpClient.delete(`${this.baseUrl4}/${userId}`,{headers})
   }
 
   getDeletedUser():Observable<User[]> {
-    return this.httpClient.get<User[]>(`${this.baseUrl5}`);
+    const headers=this.headers
+    return this.httpClient.get<User[]>(`${this.baseUrl5}`,{headers});
   }
 
   activateUser(userId:number){
-    return this.httpClient.get(`${this.baseUrl6}/${userId}`)
+    const headers=this.headers
+    return this.httpClient.get(`${this.baseUrl6}/${userId}`,{headers})
   }
 }
